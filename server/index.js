@@ -6,7 +6,7 @@ const sequelize = require("./utils/sequelize");
 const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
-const routes = require('./routes/emailRoutes')
+// const routes = require('./routes/emailRoutes')
 const cookieParser = require("cookie-parser");
 
 
@@ -16,7 +16,6 @@ dotenv.config();
 
 // Middlewares
 app.use(express.json());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -32,11 +31,11 @@ app.use(
 );
 
 // All Routes
-app.use("/api/", userRoutes, categoryRoutes, productRoutes,routes);
+app.use("/api/", userRoutes, categoryRoutes, productRoutes);
 
 // Default Route
 app.get("/", (req, res) => {
-  res.send("Ecommerce API");
+  res.send("Hello To Store API");
 });
 
 // Server

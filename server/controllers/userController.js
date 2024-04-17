@@ -5,72 +5,52 @@ const emailvalidator = require("email-validator");
 const sequelize = require("../utils/sequelize");
 
 exports.registerUser = async (req, res) => {
-  const { firstName, lastName, email, password, gender, hobbies } = req.body;
+  const { Username, FirstName, LastName, Email, Password, Role, MobileNo } = req.body;
 
   // Check if the file is uploaded
-  let profilePic = null;
+  let UserProfile = null;
   if (req.file) {
-    profilePic = req.file.filename;
+    UserProfile = req.file.filename;
   }
 
-  if (
-    !firstName ||
-    !lastName ||
-    !email ||
-    !password ||
-    !gender ||
-    !hobbies ||
-    !profilePic
-  ) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
+  // if (
+  //   !Username || !FirstName || !LastName || !Email || !Password || !Role || !MobileNo || !UserProfile
+  // ) {
+  //   return res.status(400).json({ message: "All fields are required" });
+  // }
 
   try {
-    if (!emailvalidator.validate(email)) {
+    if (!emailvalidator.validate(Email)) {
       return res.status(400).json({ message: "Invalid Email" });
     }
 
-    if (password.length < 6) {
+    if (Password.length < 6) {
       return res
         .status(400)
         .json({ message: "Password must be atleast 6 characters" });
     }
 
     // Checking if the user already exists
-    const getAuther = await sequelize.query(
-      `SELECT * FROM users WHERE email = '${email}'`,
+    const getUsers = await sequelize.query(
+      `SELECT * FROM users WHERE Email = '${Email}' AND Role = '${Role}`,
       { type: QueryTypes.SELECT }
     );
 
-    if (getAuther.length) {
-      return res.status(400).json({ message: "email already exists" });
+    if (getUsers.length) {
+      return res.status(400).json({ message: "Email already exists" });
     }
 
-    // Hashing the password
+    // Hashing the Password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(Password, salt);
 
-    const roleName = "user";
-    // Inserting data into the users database
+
 
     await sequelize.query(
-      `INSERT INTO users (firstName, lastName, email, password, gender, hobbies, roleName, profilePic) VALUES ('${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${gender}', '${hobbies}', '${roleName}', '${profilePic}')`,
+      `INSERT INTO users (Username, FirstName, LastName, Email, Password, Role, MobileNo, UserProfile) VALUES ( '${Username}','${FirstName}', '${LastName}', '${Email}', '${hashedPassword}', '${Role}', '${MobileNo}', '${UserProfile}')`,
       { type: QueryTypes.INSERT }
     );
 
-    const getUser = await sequelize.query(
-      `SELECT userId FROM users WHERE email = '${email}'`,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
-
-    const userId = getUser[0].userId;
-
-    await sequelize.query(
-      `INSERT INTO roles (roleName, userId) VALUES ('${roleName}', '${userId}')`,
-      { type: QueryTypes.INSERT }
-    );
 
     return res.status(200).json({ message: "success" });
   } catch (error) {
@@ -79,46 +59,44 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { Email, Password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "email and password are required" });
+  if (!Email || !Password) {
+    return res.status(400).json({ message: "Email and Password are required" });
   }
 
   try {
     // Checking if the user exists
     const getUser = await sequelize.query(
-      `SELECT * FROM users WHERE email = :email`,
+      `SELECT * FROM users WHERE Email = :Email`,
       {
-        replacements: { email },
+        replacements: { Email },
         type: QueryTypes.SELECT,
       }
     );
 
     // Checking if the user exists
     if (!getUser.length) {
-      return res.status(400).json({ message: "wrong email" });
+      return res.status(400).json({ message: "wrong Email" });
     }
 
-    // Getting the hashed password from the database
-    const hashedPassword = getUser[0].password;
+    // Getting the hashed Password from the database
+    const hashedPassword = getUser[0].Password;
 
-    // Comparing the password
-    const validPassword = await bcrypt.compare(password, hashedPassword);
+    // Comparing the Password
+    const validPassword = await bcrypt.compare(Password, hashedPassword);
 
     if (!validPassword) {
-      return res.status(400).json({ message: "wrong password" });
+      return res.status(400).json({ message: "wrong Password" });
     } else {
       return jwt.sign(
         {
-          userId: getUser[0].userId,
-          email: getUser[0].email,
-          firstName: getUser[0].firstName,
-          lastName: getUser[0].lastName,
-          gender: getUser[0].gender,
-          hobbies: getUser[0].hobbies,
-          profilePic: getUser[0].profilePic,
-          roleName: getUser[0].roleName,
+          Username: getUser[0].Username,
+          Email: getUser[0].Email,
+          FirstName: getUser[0].FirstName,
+          LastName: getUser[0].LastName,
+          UserProfile: getUser[0].UserProfile,
+          Role: getUser[0].Role,
         },
         process.env.JWT_SECRET,
         { expiresIn: "1h" },
@@ -136,14 +114,14 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-  // Get the userId and userRole from the request object
-  const { userId, userRole } = req.user;
+  // Get the UserID and Role from the request object
+  const { UserID } = req.user;
 
   try {
     const [user] = await sequelize.query(
-      `SELECT * FROM users WHERE userId = :userId`,
+      `SELECT * FROM users WHERE UserID = :UserID`,
       {
-        replacements: { userId },
+        replacements: { UserID },
         type: sequelize.QueryTypes.SELECT,
       }
     );
@@ -153,13 +131,13 @@ exports.deleteUser = async (req, res) => {
     }
 
     //Check if the user is not an admin and the product was not created by the user
-    if (userRole !== "admin" && user.userId !== userId) {
+    if (Role !== "admin" && user.UserID !== UserID) {
       return res.status(403).json({ message: "Not Authorized" });
     }
 
     //Delete the product
-    await sequelize.query(`DELETE FROM users WHERE userId = :userId`, {
-      replacements: { userId },
+    await sequelize.query(`DELETE FROM users WHERE UserID = :UserID`, {
+      replacements: { UserID },
       type: sequelize.QueryTypes.DELETE,
     });
 

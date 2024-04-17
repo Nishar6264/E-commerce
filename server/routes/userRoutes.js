@@ -1,10 +1,8 @@
 const express = require("express");
-const fileHandleMiddleware = require("../middleware/fileUpload");
-const registerUser = require("../controllers/Users/registerUser")
-const loginUser = require("../controllers/Users/loginUser")
-const logoutUser = require("../controllers/Users/logoutUser")
+const fileHandleMiddleware = require("../middleware/fileHandleMiddleware");
+const userController = require("../controllers/userController");
 
-const authMiddleware = require("../middleware/auth");
+const authMiddleware = require("../middleware/authMiddleware");
 
 
 const userRoutes = express.Router();
@@ -13,13 +11,13 @@ const userRoutes = express.Router();
 userRoutes.post(
   "/register/user",
   fileHandleMiddleware.single("profilePic"),
-  registerUser
+  userController.registerUser
 );
 
 // Login User
-userRoutes.post("/login/user", loginUser);
+userRoutes.post("/login/user", userController.loginUser);
 
-userRoutes.delete("/delete/user/:id", authMiddleware, logoutUser);
+userRoutes.delete("/delete/user/:id", authMiddleware, userController.deleteUser);
 
 // Get User Profile
 userRoutes.get("/profile/user", authMiddleware, (req, res) => {
