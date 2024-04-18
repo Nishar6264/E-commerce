@@ -1,7 +1,7 @@
 const express = require("express");
 const authMiddleware = require("../middleware/authMiddleware");
 const fileHandleMiddleware = require("../middleware/fileHandleMiddleware");
-const productController = require("../controllers/productController");
+const productController = require("../controllers/Products");
 
 
 const productRoutes = express.Router();
@@ -15,7 +15,7 @@ productRoutes.post(
 );
 
 //Get categories by user
-productRoutes.get("/get/products", authMiddleware, productController.getProductsByUser);
+productRoutes.get("/get/products", authMiddleware, productController.getProductsByuser);
 
 //Get categories by user
 productRoutes.get("/search/products", authMiddleware, productController.searchProduct);

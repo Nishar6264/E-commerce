@@ -14,7 +14,7 @@ const authMiddleware = async (req, res, next) => {
 
     // Check if the user exists in the database
     const existingUser = await sequelize.query(
-      `SELECT email FROM users WHERE email = '${decoded.email}'`,
+      `SELECT Email FROM users WHERE Email = '${decoded.Email}'`,
       { type: QueryTypes.SELECT }
     );
 
