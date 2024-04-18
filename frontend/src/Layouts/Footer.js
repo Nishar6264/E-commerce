@@ -95,7 +95,7 @@ export default function Footer() {
               <p className="small text-muted mb-0">
                 Template designed by{" "}
                 <a className="text-white reset-anchor" href="#">
-                  Abert Nguyen
+                  Nishar Alam
                 </a>
               </p>
             </div>

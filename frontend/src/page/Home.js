@@ -37,7 +37,7 @@ export default function Home() {
               <div className="row px-4 px-lg-5">
                 <div className="col-lg-6">
                   <p className="text-muted small text-uppercase mb-2">
-                    New Inspiration 2020
+                    New Inspiration 2024
                   </p>
                   <h1 className="h2 text-uppercase mb-3">
                     20% off on new season
