@@ -26,32 +26,8 @@ export default function HeaderAdmin() {
             <i className="ti-menu ti-close"></i>
           </a>
           <div className="navbar-brand">
-            <NavLink to="/admin">
-              <b className="logo-icon">
-                <img
-                  src="./image/logo-icon.png"
-                  alt="homepage"
-                  className="dark-logo"
-                />
-                <img
-                  src="./image/logo-icon.png"
-                  alt="homepage"
-                  className="light-logo"
-                />
-              </b>
-              <span className="logo-text">
-                <img
-                  src="./image/logo-text.png"
-                  alt="homepage"
-                  className="dark-logo"
-                />
-                <img
-                  src="./image/logo-light-text.png"
-                  className="light-logo"
-                  alt="homepage"
-                />
-              </span>
-            </NavLink>
+
+            <h1>AdminEcom</h1>
           </div>
           <a
             className="topbartoggler d-block d-md-none waves-effect waves-light"

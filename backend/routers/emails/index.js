@@ -1,7 +1,7 @@
 const { getCartByUser } = require("../../controllers/carts");
 const express = require("express");
-const { authenticate } = require("../../middwares/auth");
-const { sendMail } = require("../../mailer");
+const { authenticate } = require("../../middleware/auth");
+const { sendMail } = require("../../mailer.js");
 const nodeMailer = require("nodemailer");
 
 const emailRouter = express.Router();
@@ -11,7 +11,7 @@ emailRouter.post("/", [authenticate], async (req, res) => {
 
   const user = req.user;
 
-  const subject = "Hóa Đơn Đặt Hàng";
+  const subject = "Order Details";
   const status = false;
 
   const cartsUser = await getCartByUser(user.id);
@@ -21,7 +21,7 @@ emailRouter.post("/", [authenticate], async (req, res) => {
   }, 0);
 
   const htmlHead = `<table style="width:50%">
-    <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Tên Sản Phẩm</th><th style="border: 1px solid black;">Hình Ảnh</th><th style="border: 1px solid black;">Giá</th><th style="border: 1px solid black;">Số Lượng</th><th style="border: 1px solid black;">Thành Tiền</th>`;
+    <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Product Name</th><th style="border: 1px solid black;">Image</th><th style="border: 1px solid black;">prices</th><th style="border: 1px solid black;">Quantity</th><th style="border: 1px solid black;">Total Prices</th>`;
 
   let htmlContent = "";
 
@@ -31,7 +31,7 @@ emailRouter.post("/", [authenticate], async (req, res) => {
         cartsUser[i].nameProduct
       }</td>
       <td style="border: 1px solid black; font-size: 1.2rem; text-align: center;"><img src=${
-        cartsUser[i].img
+        cartsUser[i].img1
       }width="80" height="80"></td>
       <td style="border: 1px solid black; font-size: 1.2rem; text-align: center;">${
         cartsUser[i].priceProduct
@@ -44,13 +44,14 @@ emailRouter.post("/", [authenticate], async (req, res) => {
       $</td><tr>`;
   }
   const htmlResult = `
-  <h1>Xin Chào ${fullName}</h1>
+  <h1>Hi, ${fullName}</h1>
+  <h2>Thank you for your order! You made a great choice! </h2>
   <h3>Phone: ${phone}</h3>
   <h3>Address: ${address}</h3>
     ${htmlHead}
     ${htmlContent}
-  <h1>Tổng Thanh Toán: ${total}$
-  <p>Cảm ơn bạn!</p>
+  <h1>Total: ${total}$
+  <p>Thank You!</p>
     `;
 
   const info = await sendMail(email, subject, htmlResult);

@@ -1,12 +1,14 @@
 const nodeMailer = require("nodemailer");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const adminEmail = "nisharalam786m@gmail.com";
-const adminPassword = "lndensrtuxc123qwedas";
+const adminEmail = process.env.EMAIL;
+const adminPassword = process.env.PASSWORD;
 
-//Sử dụng host của google
+
 const mailHost = "smtp.gmail.com";
 
-//Port 587 dùng cho việc gửi mail
+
 const mailPort = 587;
 
 const sendMail = async (to, subject, htmlContent) => {

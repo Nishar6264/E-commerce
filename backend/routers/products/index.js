@@ -20,6 +20,7 @@ productRouter.post("/", async (req, res) => {
     img3,
     img4,
     category,
+    stocks,
     originalPrice,
     promotionPercent,
   } = req.body;
@@ -33,6 +34,7 @@ productRouter.post("/", async (req, res) => {
     img3,
     img4,
     category,
+    stocks,
     originalPrice,
     promotionPercent,
   });
@@ -112,6 +114,7 @@ productRouter.put("/:id", async (req, res) => {
     img3,
     img4,
     category,
+    stocks,
     originalPrice,
     promotionPercent,
   } = req.body;
@@ -131,6 +134,7 @@ productRouter.put("/:id", async (req, res) => {
     img3,
     img4,
     category,
+    stocks,
     originalPrice,
     promotionPercent,
   };

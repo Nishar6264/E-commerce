@@ -38,7 +38,7 @@ export default function HomeAdmin() {
                     </span>
                   </div>
                   <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
-                    New Clients
+                    New Sell
                   </h6>
                 </div>
                 <div className="ml-auto mt-md-3 mt-lg-0">
@@ -74,12 +74,12 @@ export default function HomeAdmin() {
                 <div>
                   <div className="d-inline-flex align-items-center">
                     <h2 className="text-dark mb-1 font-weight-medium">3</h2>
-                    <span className="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">
-                      -18.33%
+                    <span className="badge bg-success font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">
+                      +18.33%
                     </span>
                   </div>
                   <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
-                    New Projects
+                    New Product
                   </h6>
                 </div>
                 <div className="ml-auto mt-md-3 mt-lg-0">
@@ -96,7 +96,7 @@ export default function HomeAdmin() {
                 <div>
                   <h2 className="text-dark mb-1 font-weight-medium">10</h2>
                   <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
-                    Projects
+                    Products
                   </h6>
                 </div>
                 <div className="ml-auto mt-md-3 mt-lg-0">
@@ -113,7 +113,7 @@ export default function HomeAdmin() {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex align-items-center mb-4">
-                  <h4 className="card-title">Top Leaders</h4>
+                  <h4 className="card-title">Top Admins</h4>
                   <div className="ml-auto">
                     <div className="dropdown sub-dropdown">
                       <button
@@ -148,7 +148,7 @@ export default function HomeAdmin() {
                     <thead>
                       <tr className="border-0">
                         <th className="border-0 font-14 font-weight-medium text-muted">
-                          Team Lead
+                          Admin
                         </th>
                         <th className="border-0 font-14 font-weight-medium text-muted px-2">
                           Project
@@ -179,10 +179,10 @@ export default function HomeAdmin() {
                             </div>
                             <div className="">
                               <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                Nguyễn Văn Sang
+                                Nishar Alam
                               </h5>
                               <span className="text-muted font-14">
-                                sangnguyen190997@gmail.com
+                                mralamnishar@gmail.com
                               </span>
                             </div>
                           </div>
@@ -215,8 +215,8 @@ export default function HomeAdmin() {
         </div>
       </div>
       <footer className="footer text-center text-muted">
-        All Rights Reserved by Adminmart. Designed and Developed by{" "}
-        <a href="">Sang Nguyen</a>.
+        All Rights Reserved by AdminEcom. Designed and Developed by{" "}
+        <a href="">Nishar Alam</a>.
       </footer>
     </div>
   );

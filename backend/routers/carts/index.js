@@ -2,7 +2,7 @@ const { addToCart } = require("../../controllers/carts");
 
 const express = require("express");
 const { getProductById } = require("../../controllers/products");
-const { authenticate } = require("../../middwares/auth");
+const { authenticate } = require("../../middleware/auth");
 
 const cartRouter = express.Router();
 

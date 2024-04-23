@@ -41,11 +41,11 @@ export default function Products({ productPanigation, sort }) {
                       className="btn btn-sm btn-dark"
                       to={`/detail/${item.id}`}
                     >
-                      Add to cart
+                      Details
                     </NavLink>
                   </li>
                   <li className="list-inline-item mr-0">
-                    {/* Dùng Modal phải có href để nó hiện ra thằng đó và thuộc tính data-toggle="modal" để mở modal*/}
+                
                     <a
                       className="btn btn-sm btn-outline-dark"
                       href={`#product_${item.id}`}

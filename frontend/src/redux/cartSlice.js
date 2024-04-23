@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       );
 
       if (action.payload.quantity <= 1) {
-        // alert("Ít nhất phải có một sản phẩm");
+    
         return;
       } else {
         state.carts[indexItem].quantity -= 1;

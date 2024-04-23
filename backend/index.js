@@ -5,7 +5,7 @@ const { sequelize } = require("./models");
 const rootRouter = require("./routers");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const { createMess } = require("./controllers/messenger");
+
 const app = express();
 const httpServer = require("http").createServer(app);
 
@@ -18,12 +18,7 @@ app.use(
   })
 );
 
-const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: "http://localhost:3000",
-    credentials: true,
-  },
-});
+
 
 const publicPathDirectory = path.join(__dirname, "public");
 app.use(express.static(publicPathDirectory));
@@ -40,29 +35,6 @@ sequelize
   .catch((err) => {
     console.log("Unable to connect to the database", err);
   });
-
-// (async () => {
-//   await sequelize.sync();
-// })();
-
-io.on("connection", (socket) => {
-  socket.on("send_message", (data) => {
-    const dataNew = {
-      senderId: data.receiverId,
-      receiverId: data.senderId,
-      content: data.content,
-      category: "receiver",
-    };
-
-    createMess(dataNew);
-    socket.broadcast.emit("receive_message");
-  });
-
-  socket.on("send_order", (data) => {
-    //Xử lý xong server gửi ngược lại client admin thông qua socket với key receive_order
-    socket.broadcast.emit("receive_order", data);
-  });
-});
 
 const PORT = process.env.PORT || 8000;
 

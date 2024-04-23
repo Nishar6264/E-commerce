@@ -1,5 +1,5 @@
-import Chat from "../components/Admin/Chat";
-import HistoryAdmin from "../components/Admin/HistoryAdmin";
+
+import OrderAdmin from "../components/Admin/OrderAdmin";
 import HomeAdmin from "../components/Admin/HomeAdmin";
 import ProductsAdmin from "../components/Admin/ProductsAdmin";
 import UsersAdmin from "../components/Admin/UsersAdmin";
@@ -10,10 +10,6 @@ const adminRoutes = [
     component: HomeAdmin,
   },
   {
-    path: "/chat",
-    component: Chat,
-  },
-  {
     path: "/users",
     component: UsersAdmin,
   },
@@ -22,8 +18,8 @@ const adminRoutes = [
     component: ProductsAdmin,
   },
   {
-    path: "/history",
-    component: HistoryAdmin,
+    path: "/order",
+    component: OrderAdmin,
   },
 ];
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const { authenticate, verifyTokenandAdmin } = require("../../middwares/auth");
+const { authenticate, verifyTokenandAdmin } = require("../../middleware/auth");
 const {
   comparePassword,
   hashPassword,

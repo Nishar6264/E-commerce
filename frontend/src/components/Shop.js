@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Products from "./Products";
 import Pagination from "@mui/material/Pagination";
 import queryString from "query-string";
+
+
 import {
   getListProduct,
   getListProductFilter,
@@ -146,7 +148,7 @@ export default function Shop() {
                     <img className="d-none" href={item.img3} />
                   </div>
                   <div className="col-lg-6">
-                    {/* Để tắt modal phải có class="close" và data-dissmiss="modal" và aria-label="Close" */}
+                   
                     <a
                       className="close p-4"
                       type="button"
@@ -232,13 +234,6 @@ export default function Shop() {
                     Clothes
                   </a>
                 </li>
-              </ul>
-              <div className="py-2 px-4 bg-light mb-3">
-                <strong className="small text-uppercase font-weight-bold">
-                  Health &amp; Beauty
-                </strong>
-              </div>
-              <ul className="list-unstyled small text-muted pl-lg-4 font-weight-normal">
                 <li className="mb-2">
                   <a
                     className="reset-anchor"
@@ -260,6 +255,31 @@ export default function Shop() {
               </ul>
               <div className="py-2 px-4 bg-light mb-3">
                 <strong className="small text-uppercase font-weight-bold">
+                  Health &amp; Beauty
+                </strong>
+              </div>
+              <ul className="list-unstyled small text-muted pl-lg-4 font-weight-normal">
+                <li className="mb-2">
+                  <a
+                    className="reset-anchor"
+                    href="#"
+                    onClick={() => handleCategory("fragrances")}
+                  >
+                    fragrances
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a
+                    className="reset-anchor"
+                    href="#"
+                    onClick={() => handleCategory("skincare")}
+                  >
+                    Skincare
+                  </a>
+                </li>
+              </ul>
+              <div className="py-2 px-4 bg-light mb-3">
+                <strong className="small text-uppercase font-weight-bold">
                   Electronics
                 </strong>
               </div>
@@ -268,9 +288,18 @@ export default function Shop() {
                   <a
                     className="reset-anchor"
                     href="#"
-                    onClick={() => handleCategory("electronics")}
+                    onClick={() => handleCategory("smartphones")}
                   >
-                    Accessory
+                    Smartphones
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a
+                    className="reset-anchor"
+                    href="#"
+                    onClick={() => handleCategory("laptops")}
+                  >
+                    Laptops
                   </a>
                 </li>
               </ul>

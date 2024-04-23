@@ -5,12 +5,14 @@ import * as Yup from "yup";
 import queryString from "query-string";
 import { checkoutProduct, sendMailCheckout } from "../services/API/checkoutApi";
 import "../css/checkout.css";
-import { createHistoryUser } from "../services/API/historyApi";
+import { createOrderUser } from "../services/API/orderApi";
 import io from "socket.io-client";
 const socket = io("http://localhost:3000");
 
 export default function Checkout() {
-  const { carts, cartTotalPrice } = useSelector((state) => state.cart);
+  const { carts, cartTotalPrice,setProductName } = useSelector((state) => state.cart);
+
+  
   const { currentUser } = useSelector((state) => state.auth.login);
   const dispatch = useDispatch();
   const [success, setSuccess] = useState(false);
@@ -67,14 +69,15 @@ export default function Checkout() {
           currentUser.id
         );
 
-        const paramsHistory = {
+        const paramsOrder = {
           idUser: currentUser.id,
           phone: values.phone,
           address: values.address,
           fullname: values.fullName,
+          productName: setProductName,
           total: cartTotalPrice,
         };
-        await createHistoryUser(dispatch, paramsHistory);
+        await createOrderUser(dispatch, paramsOrder);
       }
 
       //send data to server
@@ -244,6 +247,12 @@ export default function Checkout() {
                           Total
                         </strong>
                         <span>${cartTotalPrice}</span>
+                      </li>
+                      <li className="d-flex align-items-center justify-content-between">
+                        <strong className="text-uppercase small font-weight-bold">
+                          productName
+                        </strong>
+                        <span>${setProductName}</span>
                       </li>
                     </ul>
                   </div>

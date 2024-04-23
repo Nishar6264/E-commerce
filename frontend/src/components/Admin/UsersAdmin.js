@@ -77,7 +77,7 @@ export default function UsersAdmin() {
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
                             <td>
-                              {user.admin == 1 ? "Quản Trị" : "Khách Hàng"}
+                              {user.admin == 1 ? "Admin" : "User"}
                             </td>
                             <td>
                               <button
@@ -100,8 +100,8 @@ export default function UsersAdmin() {
         </div>
       </div>
       <footer className="footer text-center text-muted">
-        All Rights Reserved by Adminmart. Designed and Developed by{" "}
-        <a href="">Sang Nguyen</a>.
+        All Rights Reserved by AdminEcom. Designed and Developed by{" "}
+        <a href="">Nishar Alam</a>.
       </footer>
     </div>
   );

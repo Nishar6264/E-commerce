@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="row">
             <div className="col-lg-6">
               <p className="small text-muted mb-0">
-                &copy; 2020 All rights reserved.
+                &copy; 2024 All rights reserved.
               </p>
             </div>
             <div className="col-lg-6 text-lg-right">

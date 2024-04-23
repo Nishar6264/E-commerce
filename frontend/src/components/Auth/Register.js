@@ -101,7 +101,7 @@ export default function Register() {
             <div className="text-center py-4">
               <span className="txt1">Login?</span>
               &nbsp;
-              <NavLink to="/signin" className="txt2">
+              <NavLink to="/login" className="txt2">
                 Click
               </NavLink>
             </div>

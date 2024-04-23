@@ -22,7 +22,7 @@ export default function Header() {
     navigate("/manage");
   };
   const handleHistory = () => {
-    navigate("/historyUser");
+    navigate("/OrderUser");
   };
 
   return (
@@ -97,7 +97,7 @@ export default function Header() {
                     className="dropdown-item border-0 transition-link"
                     onClick={handleHistory}
                   >
-                    History
+                    Orders
                   </button>
                   <button
                     className="dropdown-item border-0 transition-link"

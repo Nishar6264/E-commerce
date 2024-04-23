@@ -55,7 +55,7 @@ export default function ProductBigSale({ productDiscount }) {
                         className="btn btn-sm btn-dark"
                         to={`/detail/${item.id}`}
                       >
-                        Add to cart
+                        View
                       </NavLink>
                     </li>
                     <li className="list-inline-item mr-0">

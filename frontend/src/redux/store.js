@@ -4,9 +4,8 @@ import userReducer from "./userSlice";
 import authReducer from "./authSlice";
 import cartReducer from "./cartSlice";
 import checkoutReducer from "./checkoutSlice";
-import commentReducer from "./commentSlice";
-import messengerReducer from "./messengerSlice";
-import historyReducer from "./historySlice";
+
+import orderReducer from "./orderSlice";
 
 import {
   persistStore,
@@ -32,9 +31,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
-  comment: commentReducer,
-  messenger: messengerReducer,
-  history: historyReducer,
+
+  order: orderReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -50,12 +48,3 @@ export const store = configureStore({
 
 export let persistor = persistStore(store);
 
-// const store = configureStore({
-//   reducer: {
-//     product: productReducer,
-//     user: userReducer,
-//     auth: authReducer,
-//   },
-// });
-
-// export default store;

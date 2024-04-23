@@ -1,5 +1,5 @@
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { DOMAIN } from "../../utils/settings/config";
 
 const refreshToken = async () => {
@@ -18,7 +18,7 @@ export const createAxios = (user, dispatch, stateSuccess) => {
   newInstance.interceptors.request.use(
     async (config) => {
       let date = new Date();
-      const decocedToken = jwt_decode(user?.token);
+      const decocedToken = jwtDecode(user?.token);
       if (decocedToken.exp < date.getTime() / 1000) {
         const data = await refreshToken();
         console.log({ data });

@@ -4,7 +4,7 @@ import CartProduct from "../components/CartProduct";
 import Checkout from "../components/Checkout";
 import DetailProduct from "../components/DetailProduct";
 import Shop from "../components/Shop";
-import HistoryUser from "../components/User/HistoryUser";
+import OrderUser from "../components/User/OrderUser";
 import Home from "../page/Home";
 
 const publicRoutes = [
@@ -37,8 +37,8 @@ const publicRoutes = [
     component: Checkout,
   },
   {
-    path: "/HistoryUser",
-    component: HistoryUser,
+    path: "/OrderUser",
+    component: OrderUser,
   },
 ];
 

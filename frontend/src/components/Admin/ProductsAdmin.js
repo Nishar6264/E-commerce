@@ -319,6 +319,20 @@ export default function ProductsAdmin() {
                                     </p>
                                   </div>
                                   <div className="form-group">
+                                    <label htmlFor="stocks">stocks</label>
+                                    <input
+                                      name="stocks"
+                                      type="text"
+                                      className="form-control"
+                                      id="stocks"
+                                      placeholder="Enter stocks"
+                                      onChange={formik.handleChange}
+                                    />
+                                    <p className="text-2xs text-danger">
+                                      {formik.errors.stocks}
+                                    </p>
+                                  </div>
+                                  <div className="form-group">
                                     <label htmlFor="originalPrice">
                                       originalPrice
                                     </label>
@@ -382,6 +396,7 @@ export default function ProductsAdmin() {
                         <th>Price</th>
                         <th>Image</th>
                         <th>Category</th>
+                        <th>stocks</th>
                         <th>Edit</th>
                       </tr>
                     </thead>
@@ -400,6 +415,7 @@ export default function ProductsAdmin() {
                               />
                             </td>
                             <td>{item.category}</td>
+                            <td>{item.stocks}</td>
                             <td>
                               <button
                                 type="submit"
@@ -435,8 +451,8 @@ export default function ProductsAdmin() {
         </div>
       </div>
       <footer className="footer text-center text-muted">
-        All Rights Reserved by Adminmart. Designed and Developed by{" "}
-        <a href="">Nguyễn Sang</a>.
+        All Rights Reserved by AdminEcom. Designed and Developed by{" "}
+        <a href="">Nishar Alam</a>.
       </footer>
     </div>
   );

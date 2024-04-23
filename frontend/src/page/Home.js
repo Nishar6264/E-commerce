@@ -42,9 +42,9 @@ export default function Home() {
                   <h1 className="h2 text-uppercase mb-3">
                     20% off on new season
                   </h1>
-                  <a className="btn btn-dark" href="shop.html">
+                  <NavLink className="btn btn-dark" to="/shop">
                     Browse collections
-                  </a>
+                    </NavLink>
                 </div>
               </div>
             </div>

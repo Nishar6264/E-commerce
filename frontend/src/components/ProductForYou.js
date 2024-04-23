@@ -147,7 +147,7 @@ export default function ProductForYou({ listProduct }) {
             <div className="col-lg-6 mb-3 mb-lg-0">
               <h5 className="text-uppercase">Let's be friends!</h5>
               <p className="text-small text-muted mb-0">
-                Welcome to my shop ecommerece!!!
+                Welcome to my shop ecommerce!!!
               </p>
             </div>
             <div className="col-lg-6">
